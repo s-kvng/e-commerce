@@ -8,8 +8,9 @@ import { Gutter } from '../../Gutter'
 import { inclusions, noHeaderFooterUrls } from '../../../constants'
 import classes from './index.module.scss'
 import Image from 'next/image'
+import { Footer } from '../../../../payload/payload-types'
 
-const FooterComponent = ({ footer}) => {
+const FooterComponent = ({ footer}: {footer : Footer}) => {
     const pathname = usePathname()
   return (
     <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
@@ -32,6 +33,8 @@ const FooterComponent = ({ footer}) => {
                     <Link href={"/"}>
                     <Image src={"/logo-white.svg"} alt='logo' width={170} height={50}/>
                     </Link>
+
+                    <p>{footer.copyright}</p>
                 </div>
             </Gutter>
         </div>
