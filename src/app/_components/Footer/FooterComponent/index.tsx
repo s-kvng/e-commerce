@@ -5,13 +5,16 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 import { Gutter } from '../../Gutter'
-import { inclusions, noHeaderFooterUrls } from '../../../constants'
+import { inclusions, noHeaderFooterUrls} from '../../../constants'
 import classes from './index.module.scss'
 import Image from 'next/image'
 import { Footer } from '../../../../payload/payload-types'
+import { Button } from '../../Button'
 
 const FooterComponent = ({ footer}: {footer : Footer}) => {
     const pathname = usePathname()
+
+    const navItems = footer?.navItems || []
   return (
     <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ''}>
         <Gutter>
@@ -35,6 +38,22 @@ const FooterComponent = ({ footer}: {footer : Footer}) => {
                     </Link>
 
                     <p>{footer.copyright}</p>
+                    <div className={ classes.socialLinks}>
+                        { navItems.map((item)=>{
+                            const icon = '';
+
+                            return(
+                                <Button key={item.link.label} 
+                                href={item.link.url} 
+                                el='link'
+                                newTab={true}
+                                className={ classes.socialLinkItem}
+                                >
+                                    {item.link.label}
+                                </Button>
+                            )
+                    })}
+                    </div>
                 </div>
             </Gutter>
         </div>
