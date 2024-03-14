@@ -5,9 +5,7 @@ import { Footer as FooterType } from '../../../payload/payload-types'
 import { fetchFooter} from '../../_api/fetchGlobals'
 
 import FooterComponent from './FooterComponent'
-// import { ThemeSelector } from '../../_providers/Theme/ThemeSelector'
-// import { Gutter } from '../Gutter'
-// import { CMSLink } from '../Link'
+
 
 import classes from './index.module.scss'
 
