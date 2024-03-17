@@ -8,7 +8,7 @@ import { Gutter } from '../../Gutter'
 import { inclusions, noHeaderFooterUrls} from '../../../constants'
 import classes from './index.module.scss'
 import Image from 'next/image'
-import { Footer } from '../../../../payload/payload-types'
+import { Footer, Media } from '../../../../payload/payload-types'
 import { Button } from '../../Button'
 
 const FooterComponent = ({ footer}: {footer : Footer}) => {
@@ -40,7 +40,7 @@ const FooterComponent = ({ footer}: {footer : Footer}) => {
                     <p>{footer.copyright}</p>
                     <div className={ classes.socialLinks}>
                         { navItems.map((item)=>{
-                            const icon = '';
+                            const icon = item?.link?.icon as Media;
 
                             return(
                                 <Button key={item.link.label} 
@@ -49,7 +49,13 @@ const FooterComponent = ({ footer}: {footer : Footer}) => {
                                 newTab={true}
                                 className={ classes.socialLinkItem}
                                 >
-                                    {item.link.label}
+                                    <Image 
+                                    src={icon?.url}
+                                    alt={icon.alt}
+                                    width={24}
+                                    height={24}
+                                    className={classes.socialIcon}
+                                    />
                                 </Button>
                             )
                     })}
